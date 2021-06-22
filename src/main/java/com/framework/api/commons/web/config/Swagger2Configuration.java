@@ -29,7 +29,7 @@ public class Swagger2Configuration {
                 .globalOperationParameters(new ArrayList<>())
                 .directModelSubstitute(Byte.class, Integer.class)
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.sc.act.api"))
+                .apis(RequestHandlerSelectors.basePackage("com.framework.api"))
                 .paths(PathSelectors.any())
                 .build();
     }

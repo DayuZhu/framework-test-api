@@ -3,7 +3,7 @@ package com.framework.api;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.alibaba.fastjson.support.config.FastJsonConfig;
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
-import com.framework.api.constant.CommonConstant;
+import com.framework.api.constant.FrameworkApiConstant;
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
@@ -12,12 +12,14 @@ import org.springframework.boot.autoconfigure.web.HttpMessageConverters;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.client.SimpleClientHttpRequestFactory;
-import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.concurrent.*;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 @SpringBootApplication
 @MapperScan("com.framework.api.mapper")
@@ -33,8 +35,7 @@ public class FrameworkApiApplication {
         fastJsonConfig.setSerializerFeatures(SerializerFeature.PrettyFormat);
         // 3、再convert中添加配置信息
         fasConverter.setFastJsonConfig(fastJsonConfig);
-        HttpMessageConverter<?> converter = fasConverter;
-        return new HttpMessageConverters(converter);
+        return new HttpMessageConverters(fasConverter);
     }
 
     @Bean
@@ -44,7 +45,7 @@ public class FrameworkApiApplication {
         executor.setCorePoolSize(10);
         executor.setMaxPoolSize(30);
         executor.setQueueCapacity(8);
-        executor.setThreadNamePrefix( CommonConstant.SCACT_THREAD_NAME_PREFIX);
+        executor.setThreadNamePrefix(FrameworkApiConstant.SCACT_THREAD_NAME_PREFIX);
         // 对拒绝task的处理策略
         executor.setRejectedExecutionHandler(new ThreadPoolExecutor.CallerRunsPolicy());
         executor.setKeepAliveSeconds(60);
@@ -62,7 +63,7 @@ public class FrameworkApiApplication {
                 0L,
                 TimeUnit.MILLISECONDS,
                 new ArrayBlockingQueue<>(1024),
-                new ThreadFactoryBuilder().setNameFormat(com.framework.api.constant.CommonConstant.SCACT_ASYNC_THREAD_NAME_PREFIX).build(),
+                new ThreadFactoryBuilder().setNameFormat(FrameworkApiConstant.SCACT_ASYNC_THREAD_NAME_PREFIX).build(),
                 new ThreadPoolExecutor.AbortPolicy());
     }
 

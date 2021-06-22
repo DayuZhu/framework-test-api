@@ -36,20 +36,20 @@ public class BaseRuntimeException extends RuntimeException {
 
     }
 
-    public BaseRuntimeException( IResultEnum exEnum) {
+    public BaseRuntimeException(IResultEnum exEnum) {
         this(exEnum.getCode(), exEnum.getMessage(), exEnum.getDesc());
     }
 
-    public BaseRuntimeException( IResultEnum exEnum, Throwable e) {
+    public BaseRuntimeException(IResultEnum exEnum, Throwable e) {
         this(exEnum.getCode(), exEnum.getMessage(), exEnum.getDesc());
         initCause(e);
     }
 
-    public BaseRuntimeException( IResultEnum exEnum, String message) {
+    public BaseRuntimeException(IResultEnum exEnum, String message) {
         this(exEnum.getCode(), message, exEnum.getDesc());
     }
 
-    public BaseRuntimeException( IResultEnum exEnum, String message, Throwable e) {
+    public BaseRuntimeException(IResultEnum exEnum, String message, Throwable e) {
         this(exEnum.getCode(), message, exEnum.getDesc());
         initCause(e);
     }

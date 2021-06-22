@@ -23,6 +23,15 @@ public enum ResultEnum implements IResultEnum {
     EXCEPTION("-101", "系统异常", "系统异常"),
 
     /**
+     * 异常
+     */
+    PARAM_ERROR("-130", "系统异常", "参数错误"),
+
+    /**
+     * 异常
+     */
+    URI_NOT_EXIST("-131", "接口不存在", "接口不存在"),
+    /**
      * 验签失败
      */
     SIGN_FAIL("-102", "处理失败", "签名校验失败"),
