@@ -12,6 +12,10 @@ import org.springframework.context.ApplicationContext;
  * @date: 2021/6/1 17:12
  */
 public class SpringUtils {
+    private SpringUtils() {
+        throw new IllegalArgumentException("这是一个工具类！");
+    }
+
     private static ApplicationContext ac = null;
 
     private static ApplicationContext getApplicationContext() {
