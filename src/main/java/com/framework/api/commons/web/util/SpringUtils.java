@@ -5,15 +5,13 @@ import org.springframework.context.ApplicationContext;
 /**
  * 功能描述:
  *
- * @param <T>
+ * @param
  * @className:SpringUtil
  * @projectName:framework-test-api
  * @author:Dayu
  * @date: 2021/6/1 17:12
  */
-public class SpringUtil<T> {
-
-
+public class SpringUtils {
     private static ApplicationContext ac = null;
 
     private static ApplicationContext getApplicationContext() {
@@ -21,7 +19,7 @@ public class SpringUtil<T> {
     }
 
     public static void setApplicationContext(ApplicationContext ac) {
-        SpringUtil.ac = ac;
+        SpringUtils.ac = ac;
     }
 
     public static <T> T getBean(String name, Class<T> requiredType) {

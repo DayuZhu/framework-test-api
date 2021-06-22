@@ -3,7 +3,7 @@ package com.framework.api.commons.web.base;
 
 import com.alibaba.fastjson.JSON;
 import com.framework.api.commons.web.enums.ResultEnum;
-import com.framework.api.commons.web.util.SpringUtil;
+import com.framework.api.commons.web.util.SpringUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,7 +29,7 @@ public abstract class AbstractUriController {
             throw new BaseRuntimeException(ResultEnum.PARAM_ERROR);
         }
         beanName = beanName + "UriSaasShell";
-        IUriSaasShell sh = SpringUtil.getBean(beanName, IUriSaasShell.class);
+        IUriSaasShell sh = SpringUtils.getBean(beanName, IUriSaasShell.class);
         //        //鉴权
         sh.auth(uriRequest);
         // 方法调用

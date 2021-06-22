@@ -1,10 +1,10 @@
 package com.framework.api.commons.web.config;
 
-import com.framework.api.commons.web.util.SpringUtil;
+import com.framework.api.commons.web.util.SpringUtils;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
-import org.springframework.stereotype.Component;
+import org.springframework.context.annotation.Configuration;
 
 /**
  * 功能描述:
@@ -14,12 +14,12 @@ import org.springframework.stereotype.Component;
  * @author:Dayu
  * @date: 2021/6/1 17:13
  */
-@Component
+@Configuration
 public class ApplicationContextRegister implements ApplicationContextAware {
 
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-        SpringUtil.setApplicationContext(applicationContext);
+        SpringUtils.setApplicationContext(applicationContext);
     }
 
 }
